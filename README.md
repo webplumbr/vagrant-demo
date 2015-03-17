@@ -51,7 +51,7 @@ curl -v http://demo.local
  
 ### References
 
-[Vagrant documentation] [http://docs.vagrantup.com/v2/]
-[Ansible Tutorial] [https://serversforhackers.com/an-ansible-tutorial]
-[Ansible Playbook introduction] [http://docs.ansible.com/playbooks_intro.html]
+- [Vagrant documentation] (http://docs.vagrantup.com/v2/)
+- [Ansible Tutorial] (https://serversforhackers.com/an-ansible-tutorial)
+- [Ansible Playbook introduction] (http://docs.ansible.com/playbooks_intro.html)
 
