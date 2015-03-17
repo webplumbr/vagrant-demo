@@ -1,0 +1,53 @@
+---
+# Ansible playbook
+
+- hosts: all
+  remote_user: vagrant
+  sudo: yes
+  tasks:
+    - name: Update repository cache
+      apt: update_cache=true
+
+    - name: Install Apache Web Server
+      apt: pkg=apache2 state=present
+
+    - name: Install MySQL Database Server
+      apt: pkg=mysql-server state=present
+
+    - name: Install PHP5
+      apt: pkg=php5 state=present
+
+    - name: Install PHP5 PDO Drivers
+      apt: pkg=php5-mysql state=present
+
+    - name: Install PHP5 cURL library
+      apt: pkg=php5-curl state=present
+
+    - name: Start Apache Web Server, if not running
+      service: name=apache2 state=started
+
+    - name: Start MySQL DB Server, if not running
+      service: name=mysql state=started
+
+    - name: Apply permissions to web folder
+      file: path=/var/www/html owner=www-data group=www-data mode=0775 recurse=yes
+
+    - name: Create Virtualhost folder
+      file: path=/var/www/html/demo state=directory
+
+    - name: Copy demo file
+      copy: src=demo.php dest=/var/www/html/demo/index.php mode=0775
+
+    - name: Create Virtualhost entry
+      copy: src=demo.vhost dest=/etc/apache2/sites-available/demo.conf
+
+    - name: Enable Virtualhost
+      command: /usr/sbin/a2ensite demo
+
+    - name: Restart Web Server
+      service: name=apache2 state=reloaded
+
+    #bit crude but works
+    - name: Update hosts file
+      copy: src=demo.hosts dest=/etc/hosts mode=0644
+ 

@@ -1,0 +1,5 @@
+# include ignored files here
+
+vagrant_ansible_inventory_default
+.vagrant/
+
