@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 443, host: 8443
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -40,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # ask sudoers password on prompt
     ansible.ask_sudo_pass = true
     # to turn on verbosity
-    #ansible.verbose  = "vvvv"
+    ansible.verbose  = "vvvv"
     # path to ansible hosts file
     #ansible.inventory_path = "provisioning/hosts"
   end
